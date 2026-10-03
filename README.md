@@ -1,70 +1,87 @@
-# ACC Dedicated Server AdminPanel · Landing page
+# 🏎️ ACC Dedicated Server AdminPanel — Official Landing Page
 
-Landing estática de [ACC Dedicated Server AdminPanel](https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel).
-Solo HTML, CSS y JavaScript vanilla: sin frameworks, sin build step, sin dependencias ni fuentes externas.
+[![HTML5](https://img.shields.io/badge/HTML5-semantic-E34F26.svg)](https://developer.mozilla.org/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-vanilla-1572B6.svg)](https://developer.mozilla.org/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E.svg)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen.svg)](#-repository-architecture)
+[![GitHub Pages](https://img.shields.io/badge/Hosting-GitHub%20Pages-222222.svg)](https://acc-server-panel.github.io/)
+[![Languages](https://img.shields.io/badge/Languages-ES%20%7C%20EN-blue.svg)](#-main-features)
 
+Static showcase website for **[ACC Dedicated Server AdminPanel](https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel)**, the web administration panel and automatic track rotator for the **Assetto Corsa Competizione** dedicated server (`accServer.exe`).
+
+Built with plain **HTML, CSS and vanilla JavaScript**: no frameworks, no build step, no dependencies and no external fonts.
+
+🌐 **Live:** <https://acc-server-panel.github.io/>
+
+---
+
+## ⚡ Purpose of the Page
+
+AdminPanel solves a specific problem (configuring an ACC server and rotating tracks without editing JSON by hand), but a GitHub repository is not the best place for a league admin to discover it.
+
+This landing page:
+1. Explains in plain language **why** setting up an ACC server by hand is fragile.
+2. Shows the panel's **features** with real screenshots.
+3. Walks through installation in **four steps**, with the Steam path ready to copy.
+4. Answers **frequently asked questions** and leads to the executable download.
+5. Is optimized for **search engines and social media** (meta tags, Open Graph, Twitter Card, JSON-LD, `sitemap.xml`).
+
+---
+
+## ✨ Main Features
+
+* 🪶 **Zero dependencies:** no frameworks, no npm, no CDN, no Google Fonts.
+* 🌍 **Bilingual ES / EN:** the HTML is written in Spanish (the indexed version) and English is applied from `js/main.js`. The chosen language is saved in `localStorage`.
+* 📱 **Responsive:** accessible mobile menu (closes with `Esc`, an outside click, or a breakpoint change).
+* 📋 **Copy button:** copies the dedicated server path using the Clipboard API, with a fallback for older browsers and `file://`.
+* 🖼️ **Screenshot placeholders:** if an image is missing, a "Screenshot pending" block is shown in its place.
+* 🎞️ **Reveal animations:** powered by `IntersectionObserver` and automatically disabled with `prefers-reduced-motion`.
+* 🔍 **Full SEO:** `canonical`, Open Graph, Twitter Card, JSON-LD structured data, `robots.txt` and `sitemap.xml`.
+* 🎨 **Centralized palette:** every color is defined as a variable in `:root` inside `css/style.css`.
+
+---
+
+## 🗺️ Page Sections
+
+| Anchor | Section | Content |
+| :--- | :--- | :--- |
+| `#top` | **Hero** | Headline, calls to action and main panel screenshot |
+| `#por-que` | **Why** | The pitfalls of configuring an ACC server by hand |
+| `#funciones` | **Features** | Track rotation, live drivers and configuration editor |
+| `#capturas` | **Screenshots** | Gallery with 9 panel views |
+| `#empezar` | **Get Started** | Four-step installation and Steam path with a Copy button |
+| `#faq` | **FAQ** | Frequently asked questions |
+| `#descargar` | **Download** | Final call to download the executable |
+
+---
+
+## 📁 Repository Architecture
+
+```text
+Web Page/
+│
+├── index.html                 # Full page (static Spanish content, SEO and JSON-LD)
+├── README.md                  # Project documentation
+├── robots.txt                 # Search engine rules
+├── sitemap.xml                # Site map
+│
+├── css/
+│   └── style.css              # Styles and palette in :root variables
+│
+├── js/
+│   └── main.js                # ES/EN language, mobile menu, Copy button, animations and screenshots
+│
+└── assets/
+    ├── README.txt             # Expected names and sizes for each screenshot
+    ├── favicon.svg            # Site icon (steering wheel on a dark background)
+    ├── og-image.png           # Social media image (1200x630)
+    └── captura-*.png          # Panel screenshots (16:9)
 ```
-index.html        Página (contenido estático en español)
-css/style.css     Estilos (paleta en variables :root)
-js/main.js        Idioma ES/EN, menú móvil, botón Copiar, animaciones y capturas
-assets/           Favicon y capturas (ver assets/README.txt)
-robots.txt
-sitemap.xml
-```
 
-## Abrirla en local
+---
 
-- **Doble clic en `index.html`.** Funciona directamente desde el disco.
-- **Con un servidor local** (recomendado para probar el botón Copiar y el guardado del idioma):
+## 📄 License and Disclaimer
 
-  ```bash
-  python -m http.server 8000
-  ```
+The AdminPanel license is available in the [main repository](https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel).
 
-  Ejecútalo dentro de esta carpeta y abre <http://localhost:8000>.
-
-## Reemplazar las capturas
-
-1. Haz las capturas del panel en 16:9 (recomendado 1600x900).
-2. Guárdalas en `assets/` con los nombres exactos de `assets/README.txt`
-   (por ejemplo `assets/captura-entrylist.png`).
-3. Recarga la página: el bloque "Captura pendiente" desaparece solo cuando la imagen existe.
-
-Cada imagen está marcada en `index.html` con un comentario como este:
-
-```html
-<!-- CAPTURA: ENTRY LISTS AQUI → reemplazar src por assets/captura-entrylist.png -->
-```
-
-Si cambias el formato (por ejemplo a `.webp`), actualiza el `src` de esa imagen.
-Para la vista previa en redes sociales, añade `assets/og-image.png` (1200x630).
-
-## Idiomas
-
-El HTML contiene el texto en español para que los buscadores indexen esa versión.
-Las traducciones están en el objeto `I18N` de `js/main.js`; cada elemento traducible usa:
-
-- `data-i18n="clave"` para texto plano,
-- `data-i18n-html="clave"` para texto con `<code>`, `<strong>` o enlaces,
-- `data-i18n-attr="alt:clave"` (o `aria-label:clave`) para atributos.
-
-Si cambias un texto en `index.html`, cambia también la entrada `es` del diccionario.
-
-## Publicar en GitHub Pages
-
-1. Sube el contenido de esta carpeta a la raíz de un repositorio (o a una carpeta `docs/`).
-2. En GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**.
-3. Elige la rama (`main`) y la carpeta (`/ (root)` o `/docs`) y guarda.
-4. Tras uno o dos minutos la web estará en `https://<usuario>.github.io/<repositorio>/`.
-
-Después, sustituye `https://TU-DOMINIO.com/` por la URL definitiva en:
-
-- `index.html`: `<link rel="canonical">`, `og:url`, `og:image`, `twitter:image` y el JSON-LD (`url`, `image`).
-- `sitemap.xml` y `robots.txt`.
-
-Si usas un dominio propio, configúralo en **Settings → Pages → Custom domain**.
-
-## Aviso
-
-Assetto Corsa Competizione es una marca registrada de Kunos Simulazioni S.r.l. y Digital Bros S.p.A.
-Este proyecto es independiente y no está afiliado a ellas.
+*Assetto Corsa Competizione is a registered trademark of Kunos Simulazioni S.r.l. and Digital Bros S.p.A. This project is an independent community-developed tool and is not officially affiliated with Kunos Simulazioni.*
