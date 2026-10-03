@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://acc-server-panel.github.io/sitemap.xml

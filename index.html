@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACC Server Manager: administrador de servidor ACC con interfaz gráfica | ACC AdminPanel</title>
+  <meta name="description" content="Administrador de servidor ACC gratuito y open source: una Assetto Corsa Competizione dedicated server GUI para configurar servidor dedicado ACC. Editor de event.json / settings.json, entry list ACC, clima y rotación automática de pistas.">
+  <meta name="keywords" content="ACC server manager, Assetto Corsa Competizione dedicated server GUI, administrador de servidor ACC, configurar servidor dedicado ACC, entry list ACC, editor de event.json, editor de settings.json, accServer, servidor dedicado ACC, simracing, liga ACC">
+  <meta name="author" content="PytricioPUCV">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07090d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://acc-server-panel.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ACC Dedicated Server AdminPanel">
+  <meta property="og:title" content="ACC Server Manager: administrador de servidor ACC con interfaz gráfica | ACC AdminPanel">
+  <meta property="og:description" content="Administrador de servidor ACC gratuito y open source: una Assetto Corsa Competizione dedicated server GUI para configurar servidor dedicado ACC. Editor de event.json / settings.json, entry list ACC, clima y rotación automática de pistas.">
+  <meta property="og:url" content="https://acc-server-panel.github.io/">
+  <meta property="og:image" content="https://acc-server-panel.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ACC Dedicated Server AdminPanel: panel web para administrar servidores de Assetto Corsa Competizione">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ACC Server Manager: administrador de servidor ACC con interfaz gráfica | ACC AdminPanel">
+  <meta name="twitter:description" content="Administrador de servidor ACC gratuito y open source: una Assetto Corsa Competizione dedicated server GUI para configurar servidor dedicado ACC. Editor de event.json / settings.json, entry list ACC, clima y rotación automática de pistas.">
+  <meta name="twitter:image" content="https://acc-server-panel.github.io/assets/og-image.png">
+  <meta name="twitter:image:alt" content="ACC Dedicated Server AdminPanel: panel web para administrar servidores de Assetto Corsa Competizione">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ACC Dedicated Server AdminPanel",
+    "alternateName": "ACC AdminPanel",
+    "description": "Interfaz gráfica web para configurar y administrar servidores dedicados de Assetto Corsa Competizione sin editar JSON a mano.",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "Game server administration",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "1.1",
+    "inLanguage": ["es", "en"],
+    "isAccessibleForFree": true,
+    "license": "https://opensource.org/licenses/MIT",
+    "url": "https://acc-server-panel.github.io/",
+    "downloadUrl": "https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases/download/v1.1/ACC_Server_AdminPanel_v1.1.zip",
+    "installUrl": "https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases/download/v1.1/ACC_Server_AdminPanel_v1.1.zip",
+    "sameAs": ["https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel"],
+    "image": "https://acc-server-panel.github.io/assets/og-image.png",
+    "author": {
+      "@type": "Person",
+      "name": "PytricioPUCV",
+      "url": "https://github.com/PytricioPUCV"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body id="top">
+  <!-- Sprite de iconos SVG (inline, sin peticiones externas) -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 6.5 3.5 3.5 0 0 1 17.5 15H7zM9 18.5 8 21m5-2.5-1 2.5m5-2.5-1 2.5"/></symbol>
+    <symbol id="i-steering" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M3.3 10.6c3.2.9 5.9.8 6.6-.3m10.8.3c-3.2.9-5.9.8-6.6-.3M12 14.5V21"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-6 4 12 2-6h6"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5a3 3 0 0 0 3 4m8-4h3a3 3 0 0 1-3 4m-4 3v4m-4 4h8m-6-4h4v4h-4z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3m-4 4v2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M15 9V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h4"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="1.5"/><path d="m21 16-5-5-9 8"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 0h13l-2.5 4.5L18 13H5"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3 5.6 10.4 4.6v6.9H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v6.9L3 18.4zM11.4 12.5H21V21l-9.6-1.3z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-2.5-11-3 14"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="m7 9 3 3-3 3m5 0h5"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" data-i18n-attr="aria-label:brand.home" aria-label="ACC AdminPanel, ir al inicio">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect width="64" height="64" rx="12" fill="#0d1219"/>
+          <circle cx="32" cy="32" r="19" fill="none" stroke="#e8edf4" stroke-width="5"/>
+          <path d="M13.5 29c7 2 13 2 15-1m22 1c-7 2-13 2-15-1M32 37v14" fill="none" stroke="#e8edf4" stroke-width="5" stroke-linecap="round"/>
+          <path d="M32 13.5v6" stroke="#ff2a3d" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="5" fill="#22d3ee"/>
+        </svg>
+        <span class="brand-name">ACC <strong>AdminPanel</strong></span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#funciones" data-i18n="nav.features">Funciones</a></li>
+          <li><a href="#capturas" data-i18n="nav.screens">Capturas</a></li>
+          <li><a href="#empezar" data-i18n="nav.start">Cómo empezar</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm nav-cta" href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases/download/v1.1/ACC_Server_AdminPanel_v1.1.zip">
+          <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="nav.download">Descargar v1.1</span>
+        </a>
+      </nav>
+
+      <div class="header-tools">
+        <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Idioma">
+          <button type="button" class="lang-btn" data-lang="es" lang="es" aria-pressed="true" aria-label="Español">ES</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+        </div>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n-attr="aria-label:nav.open" aria-label="Abrir menú">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ============================================================ HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="led led-red" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Assetto Corsa Competizione · Dedicated server GUI</span></p>
+          <h1 id="hero-title" data-i18n="hero.title">Administra tu servidor dedicado de ACC sin tocar un solo JSON</h1>
+          <p class="lead" data-i18n="hero.lead">Un administrador de servidor ACC con interfaz web para admins de liga y de servidores públicos: configura sesiones, clima, entry list y contraseñas desde formularios, rota circuitos al terminar cada carrera y sigue a la parrilla en tiempo real. Cada archivo se guarda en UTF-16 LE con BOM, tal como lo espera accServer.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases/download/v1.1/ACC_Server_AdminPanel_v1.1.zip">
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="hero.download">Descargar v1.1</span>
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span data-i18n="hero.repo">Ver Repositorio</span>
+            </a>
+          </div>
+          <ul class="badges" data-i18n-attr="aria-label:hero.badges" aria-label="Requisitos y licencia">
+            <li class="badge"><svg class="icon" aria-hidden="true"><use href="#i-windows"/></svg><span data-i18n="badge.windows">Windows 10/11</span></li>
+            <li class="badge"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="badge.mit">Open Source MIT</span></li>
+            <li class="badge"><svg class="icon" aria-hidden="true"><use href="#i-package"/></svg><span data-i18n="badge.python">Sin instalación de Python</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="screen">
+            <div class="screen-bar" aria-hidden="true">
+              <span class="screen-leds"><span class="led led-red"></span><span class="led led-amber"></span><span class="led led-green"></span></span>
+              <span class="screen-title">ACC Race Control</span>
+              <span class="screen-live"><span class="led led-live"></span><span data-i18n="screen.live">EN VIVO</span></span>
+            </div>
+            <!-- CAPTURA: PANEL PRINCIPAL (HERO) AQUI → reemplazar src por assets/captura-hero.png -->
+            <figure class="shot shot-hero">
+              <div class="shot-media">
+                <img src="assets/captura-hero.png" width="1600" height="900" fetchpriority="high" decoding="async"
+                     data-i18n-attr="alt:shot.hero.alt"
+                     alt="Panel principal de ACC Dedicated Server AdminPanel con el estado del servidor, el circuito activo y los récords de vuelta"
+                     onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+                <div class="shot-fallback" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                  <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-hero.png</code></span>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <dl class="spec-strip reveal">
+          <div class="spec">
+            <dt class="spec-value">25</dt>
+            <dd class="spec-label" data-i18n="spec.tracks">circuitos oficiales en el catálogo de rotación</dd>
+          </div>
+          <div class="spec">
+            <dt class="spec-value">UTF-16 LE</dt>
+            <dd class="spec-label" data-i18n="spec.encoding">con BOM en cada cfg/*.json que escribe el panel</dd>
+          </div>
+          <div class="spec">
+            <dt class="spec-value">1 .exe</dt>
+            <dd class="spec-label" data-i18n="spec.exe">sin Python, sin instalador, sin dependencias</dd>
+          </div>
+          <div class="spec">
+            <dt class="spec-value">MIT</dt>
+            <dd class="spec-label" data-i18n="spec.mit">código abierto en GitHub</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="kerb" aria-hidden="true"></div>
+
+    <!-- ============================================================ PROBLEMA / SOLUCIÓN -->
+    <section class="section" id="por-que" aria-labelledby="ps-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker" data-i18n="ps.kicker">Por qué existe</p>
+          <h2 id="ps-title" data-i18n="ps.title">Configurar un servidor dedicado de ACC a mano es frágil</h2>
+          <p class="section-lead" data-i18n="ps.lead">accServer.exe no tiene interfaz: todo vive en la carpeta cfg, en archivos JSON con un formato estricto. Un detalle mal guardado y la sesión de tu liga no sale a pista.</p>
+        </header>
+
+        <div class="compare">
+          <article class="compare-col compare-bad reveal">
+            <h3 class="compare-title"><span class="led led-red" aria-hidden="true"></span><span data-i18n="ps.manual.title">Editando JSON a mano</span></h3>
+            <ul class="compare-list">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span data-i18n-html="ps.manual.1"><strong>Codificación:</strong> el servidor espera <code>UTF-16 LE</code> con BOM. Muchos editores guardan en UTF-8 sin avisar y accServer deja de leer bien la configuración.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span data-i18n-html="ps.manual.2"><strong>Sintaxis:</strong> una coma de más o una comilla sin cerrar en <code>event.json</code> y el servidor no arranca o ignora tus cambios justo antes de la carrera.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span data-i18n-html="ps.manual.3"><strong>Sin rotación de pistas:</strong> el servidor oficial corre siempre el circuito definido en <code>event.json</code>. Cambiar de pista es editar el archivo y relanzar el servidor a mano.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span data-i18n-html="ps.manual.4"><strong>A ciegas:</strong> saber quién está en pista implica leer la consola o <code>server.log</code>, que puede ir minutos por detrás.</span></li>
+            </ul>
+          </article>
+
+          <article class="compare-col compare-good reveal">
+            <h3 class="compare-title"><span class="led led-cyan" aria-hidden="true"></span><span data-i18n="ps.panel.title">Con AdminPanel</span></h3>
+            <ul class="compare-list">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n-html="ps.panel.1">Formularios que generan JSON válido y lo guardan siempre en <code>UTF-16 LE</code> con BOM.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n-html="ps.panel.2">Arranca, detén y reinicia <code>accServer.exe</code> desde el navegador.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n-html="ps.panel.3">Rotación automática: al terminar la carrera final del evento aplica la siguiente pista y relanza el servidor.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n-html="ps.panel.4">Pilotos conectados y consola en tiempo real, con el spam de <code>onCarUpdate</code> filtrado.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ FUNCIONES -->
+    <section class="section section-alt" id="funciones" aria-labelledby="feat-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker" data-i18n="feat.kicker">Funciones</p>
+          <h2 id="feat-title" data-i18n="feat.title">Todo lo que tu servidor necesita, en un solo panel</h2>
+          <p class="section-lead" data-i18n="feat.lead">Herramientas pensadas para el día de carrera de una liga: preparar el evento, controlar la parrilla y pasar al siguiente circuito sin abrir el Bloc de notas.</p>
+        </header>
+
+        <ul class="feature-grid">
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-sliders"/></svg></span>
+            <h3 data-i18n="f1.title">Configuración del servidor</h3>
+            <p data-i18n="f1.text">Nombre del servidor en el lobby, contraseña de acceso y de admin, plazas, grupo de coches, bloqueo de la sesión de carrera y duración de práctica, clasificación y carrera. Las contraseñas nunca se devuelven al navegador.</p>
+            <p class="feature-tag">settings.json · event.json</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-list"/></svg></span>
+            <h3 data-i18n="f2.title">Entry lists y administradores</h3>
+            <p data-i18n="f2.text">Revisa la entry list de tu liga, quita pilotos, marca quién es administrador y activa forceEntryList para correr con una whitelist estricta.</p>
+            <p class="feature-tag">entrylist.json</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-cloud"/></svg></span>
+            <h3 data-i18n="f3.title">Clima y condiciones de sesión</h3>
+            <p data-i18n="f3.text">Temperatura ambiente, nubosidad, nivel de lluvia y aleatoriedad del clima: desde una carrera seca y estable hasta clima dinámico que obligue a pensar la estrategia de neumáticos.</p>
+            <p class="feature-tag">event.json</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-steering"/></svg></span>
+            <h3 data-i18n="f4.title">Físicas y ayudas a la conducción</h3>
+            <p data-i18n="f4.text">Decide qué assists permite tu servidor, como el control de estabilidad o la línea ideal, sin riesgo de romper el formato del archivo.</p>
+            <p class="feature-tag">assistRules.json</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-rotate"/></svg></span>
+            <h3 data-i18n="f5.title">Rotación automática de pistas</h3>
+            <p data-i18n="f5.text">Catálogo de los 25 circuitos oficiales agrupados por DLC. Al terminar la carrera, el panel aplica la siguiente pista de la rotación y relanza el servidor.</p>
+            <p class="feature-tag">tracks_pool/</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-pulse"/></svg></span>
+            <h3 data-i18n="f6.title">Pilotos, consola y moderación</h3>
+            <p data-i18n="f6.text">Pilotos conectados con dorsal, coche y Steam ID, aviso de lag, consola del servidor en tiempo real y moderación: administradores y lista de baneos.</p>
+            <p class="feature-tag">accServer.exe</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-trophy"/></svg></span>
+            <h3 data-i18n="f7.title">Historial de carreras y récords</h3>
+            <p data-i18n="f7.text">Lee los resultados que guarda el servidor para mostrar el historial de sesiones y los récords de vuelta de cada circuito.</p>
+            <p class="feature-tag">results/</p>
+          </li>
+          <li class="card feature reveal">
+            <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-lock"/></svg></span>
+            <h3 data-i18n="f8.title">Acceso web protegido por token</h3>
+            <p data-i18n-html="f8.text">Por defecto el panel solo escucha en tu propio PC. Con <code>--lan</code> lo abres desde otro equipo de tu red; en ambos casos se entra con un token de acceso.</p>
+            <p class="feature-tag">127.0.0.1 · --lan</p>
+          </li>
+        </ul>
+
+        <!-- Bloques alternados texto / captura -->
+        <div class="detail reveal">
+          <div class="detail-copy">
+            <p class="kicker" data-i18n="d1.kicker">Rotación de pistas</p>
+            <h3 class="detail-title" data-i18n="d1.title">Un calendario que se corre solo</h3>
+            <p data-i18n="d1.text">accServer no cambia de circuito por sí mismo. AdminPanel vigila los resultados y, cuando termina la carrera final del evento, escribe la siguiente pista en event.json y relanza el servidor. Los fines de semana con varias carreras se respetan.</p>
+            <ul class="check-list">
+              <li data-i18n="d1.li1">Activa o desactiva DLC completos o circuitos sueltos.</li>
+              <li data-i18n="d1.li2">Presets: todos los circuitos, solo juego base o solo DLC.</li>
+              <li data-i18n="d1.li3">Salta a la siguiente pista o elige una manualmente.</li>
+            </ul>
+            <div class="dlc-panel">
+              <p class="dlc-head"><span data-i18n="d1.catalog">Catálogo de rotación</span><span class="dlc-total">25</span></p>
+              <ul class="dlc-bars">
+                <li style="--n:11"><span class="dlc-name" data-i18n="dlc.base">Juego base</span><span class="dlc-count">11</span></li>
+                <li style="--n:4"><span class="dlc-name">Intercontinental GT Pack</span><span class="dlc-count">4</span></li>
+                <li style="--n:3"><span class="dlc-name">British GT Pack</span><span class="dlc-count">3</span></li>
+                <li style="--n:3"><span class="dlc-name">American Track Pack</span><span class="dlc-count">3</span></li>
+                <li style="--n:1"><span class="dlc-name">2020 GT World Challenge Pack</span><span class="dlc-count">1</span></li>
+                <li style="--n:1"><span class="dlc-name">2023 GT World Challenge Pack</span><span class="dlc-count">1</span></li>
+                <li style="--n:1"><span class="dlc-name">GT2 Pack</span><span class="dlc-count">1</span></li>
+                <li style="--n:1"><span class="dlc-name">24h Nürburgring Pack</span><span class="dlc-count">1</span></li>
+              </ul>
+            </div>
+          </div>
+          <!-- CAPTURA: ROTACION DE PISTAS AQUI → reemplazar src por assets/captura-rotacion.png -->
+          <figure class="shot frame">
+            <div class="shot-media">
+              <img src="assets/captura-rotacion.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.rotation.alt"
+                   alt="Catálogo de circuitos de ACC agrupados por DLC con la rotación automática activa"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-rotacion.png</code></span>
+              </div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="detail detail-reverse reveal">
+          <div class="detail-copy">
+            <p class="kicker" data-i18n="d2.kicker">En vivo</p>
+            <h3 class="detail-title" data-i18n="d2.title">La parrilla en tiempo real, no minutos después</h3>
+            <p data-i18n="d2.text">El panel lanza accServer dentro de una pseudoconsola de Windows y lee cada línea al instante, en vez de esperar a que server.log se vuelque a disco. Conexiones, desconexiones, timeouts y cambios de sesión aparecen en segundos.</p>
+            <ul class="check-list">
+              <li data-i18n="d2.li1">Dorsal, modelo de coche y Steam ID de cada piloto.</li>
+              <li data-i18n="d2.li2">Aviso de LAG cuando llegan paquetes UDP con retraso.</li>
+              <li data-i18n="d2.li3">Consola con filtro del spam de onCarUpdate.</li>
+            </ul>
+          </div>
+          <!-- CAPTURA: JUGADORES EN VIVO AQUI → reemplazar src por assets/captura-jugadores.png -->
+          <figure class="shot frame">
+            <div class="shot-media">
+              <img src="assets/captura-jugadores.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.players.alt"
+                   alt="Lista de pilotos conectados con dorsal, coche, Steam ID y acciones de moderación"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-jugadores.png</code></span>
+              </div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="detail reveal">
+          <div class="detail-copy">
+            <p class="kicker" data-i18n="d3.kicker">Configuración</p>
+            <h3 class="detail-title" data-i18n="d3.title">Del formulario al archivo correcto</h3>
+            <p data-i18n="d3.text">Cada cambio se valida en el formulario y se escribe en el JSON que corresponde, con la codificación que exige accServer. Tus contraseñas no viajan de vuelta al navegador: el panel solo indica si están definidas.</p>
+            <ul class="check-list">
+              <li data-i18n="d3.li1">settings.json, event.json y assistRules.json desde un mismo sitio.</li>
+              <li data-i18n="d3.li2">Duración de práctica, clasificación y carrera.</li>
+              <li data-i18n="d3.li3">Clima, plazas y grupo de coches sin buscar claves en la documentación.</li>
+            </ul>
+          </div>
+          <!-- CAPTURA: CONFIGURACION DEL SERVIDOR AQUI → reemplazar src por assets/captura-configuracion.png -->
+          <figure class="shot frame">
+            <div class="shot-media">
+              <img src="assets/captura-configuracion.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.config.alt"
+                   alt="Formulario de configuración del servidor con nombre, contraseñas, plazas y duración de las sesiones"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-configuracion.png</code></span>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CAPTURAS -->
+    <section class="section" id="capturas" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker" data-i18n="gallery.kicker">Capturas</p>
+          <h2 id="gallery-title" data-i18n="gallery.title">Así se ve el panel</h2>
+          <p class="section-lead" data-i18n="gallery.lead">Interfaz oscura estilo Race Control, pensada para tenerla abierta en un segundo monitor durante el evento.</p>
+        </header>
+
+        <div class="gallery">
+          <!-- CAPTURA: CONFIGURACION DEL SERVIDOR AQUI → reemplazar src por assets/captura-configuracion.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-configuracion.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.config.alt"
+                   alt="Formulario de configuración del servidor con nombre, contraseñas, plazas y duración de las sesiones"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-configuracion.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f1.title">Configuración del servidor</figcaption>
+          </figure>
+
+          <!-- CAPTURA: ENTRY LISTS AQUI → reemplazar src por assets/captura-entrylist.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-entrylist.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.entry.alt"
+                   alt="Tabla de la entry list con pilotos autorizados y administradores del servidor"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-entrylist.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f2.title">Entry lists y administradores</figcaption>
+          </figure>
+
+          <!-- CAPTURA: CLIMA Y SESIONES AQUI → reemplazar src por assets/captura-clima.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-clima.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.weather.alt"
+                   alt="Ajustes de temperatura ambiente, nubosidad, lluvia y aleatoriedad del clima"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-clima.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f3.title">Clima y condiciones de sesión</figcaption>
+          </figure>
+
+          <!-- CAPTURA: FISICAS Y AYUDAS AQUI → reemplazar src por assets/captura-assists.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-assists.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.assists.alt"
+                   alt="Opciones de ayudas a la conducción con control de estabilidad y línea ideal"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-assists.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f4.title">Físicas y ayudas a la conducción</figcaption>
+          </figure>
+
+          <!-- CAPTURA: ROTACION DE PISTAS AQUI → reemplazar src por assets/captura-rotacion.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-rotacion.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.rotation.alt"
+                   alt="Catálogo de circuitos de ACC agrupados por DLC con la rotación automática activa"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-rotacion.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f5.title">Rotación automática de pistas</figcaption>
+          </figure>
+
+          <!-- CAPTURA: JUGADORES EN VIVO AQUI → reemplazar src por assets/captura-jugadores.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-jugadores.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.players.alt"
+                   alt="Lista de pilotos conectados con dorsal, coche, Steam ID y acciones de moderación"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-jugadores.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="gallery.players">Pilotos en vivo y moderación</figcaption>
+          </figure>
+
+          <!-- CAPTURA: CONSOLA DEL SERVIDOR AQUI → reemplazar src por assets/captura-consola.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-consola.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.console.alt"
+                   alt="Consola del servidor en tiempo real con líneas coloreadas y filtro de spam"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-consola.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="gallery.console">Consola del servidor en tiempo real</figcaption>
+          </figure>
+
+          <!-- CAPTURA: HISTORIAL Y RECORDS AQUI → reemplazar src por assets/captura-historial.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-historial.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.history.alt"
+                   alt="Historial de sesiones y récords de vuelta por circuito"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-historial.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f7.title">Historial de carreras y récords</figcaption>
+          </figure>
+
+          <!-- CAPTURA: ACCESO CON TOKEN AQUI → reemplazar src por assets/captura-acceso.png -->
+          <figure class="shot card-shot reveal">
+            <div class="shot-media">
+              <img src="assets/captura-acceso.png" width="1600" height="900" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:shot.access.alt"
+                   alt="Ventana de ACC_AdminPanel.exe con la dirección del panel y el token de acceso enmascarado"
+                   onload="this.closest('.shot').classList.add('is-loaded')" onerror="this.closest('.shot').classList.add('is-missing')">
+              <div class="shot-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
+                <span><span data-i18n="shot.pending">Captura pendiente</span>: <code>captura-acceso.png</code></span>
+              </div>
+            </div>
+            <figcaption data-i18n="f8.title">Acceso web protegido por token</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CÓMO EMPEZAR -->
+    <section class="section section-alt" id="empezar" aria-labelledby="start-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker" data-i18n="start.kicker">Cómo empezar</p>
+          <h2 id="start-title" data-i18n="start.title">En pista en cuatro pasos</h2>
+          <p class="section-lead" data-i18n="start.lead">Sin instalador ni dependencias: el ejecutable incluye todo lo necesario.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <h3 data-i18n="step1.title">Descarga el zip</h3>
+            <p data-i18n-html="step1.text">Baja <code>ACC_Server_AdminPanel_v1.1.zip</code> desde la página de releases de GitHub y descomprímelo.</p>
+          </li>
+          <li class="step reveal">
+            <h3 data-i18n="step2.title">Colócalo en la carpeta server</h3>
+            <p data-i18n-html="step2.text">Copia <code>ACC_AdminPanel.exe</code> dentro de la carpeta <code>server</code> del servidor dedicado de ACC, junto a <code>accServer.exe</code>.</p>
+          </li>
+          <li class="step reveal">
+            <h3 data-i18n="step3.title">Ejecútalo y acepta UAC</h3>
+            <p data-i18n="step3.text">Haz doble clic y acepta el aviso de Control de cuentas de usuario: el panel necesita permisos de administrador para escribir en Program Files y gestionar accServer.exe.</p>
+          </li>
+          <li class="step reveal">
+            <h3 data-i18n="step4.title">Abre el panel</h3>
+            <p data-i18n="step4.text">El navegador se abre solo con el panel y la sesión iniciada. Arranca el servidor con el botón Iniciar para ver a los pilotos en tiempo real.</p>
+          </li>
+        </ol>
+
+        <div class="path-box reveal">
+          <p class="path-label" id="path-label"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg><span data-i18n="path.label">Ruta típica del servidor dedicado en Steam</span></p>
+          <div class="code-block">
+            <pre><code id="steam-path">C:\Program Files (x86)\Steam\steamapps\common\Assetto Corsa Competizione Dedicated Server\server</code></pre>
+            <button type="button" class="copy-btn" data-copy-target="steam-path" data-i18n-attr="aria-label:path.copyLabel" aria-label="Copiar la ruta al portapapeles">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-text" data-i18n="path.copy">Copiar</span>
+            </button>
+          </div>
+          <p class="copy-status" role="status" aria-live="polite"></p>
+          <p class="path-tip" data-i18n-html="path.tip">¿Aún no tienes el servidor? Instálalo desde Steam: <strong>Biblioteca → Herramientas → Assetto Corsa Competizione Dedicated Server</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container container-narrow">
+        <header class="section-head reveal">
+          <p class="kicker" data-i18n="faq.kicker">FAQ</p>
+          <h2 id="faq-title" data-i18n="faq.title">Preguntas frecuentes</h2>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q1">¿Necesito instalar Python?</h3></summary>
+            <div class="faq-a"><p data-i18n="faq.a1">No. ACC_AdminPanel.exe incluye su propio intérprete de Python empaquetado. Solo lo necesitas si prefieres ejecutar el panel desde el código fuente del repositorio, y aun así no hay dependencias externas que instalar.</p></div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q2">¿Es gratis?</h3></summary>
+            <div class="faq-a"><p data-i18n="faq.a2">Sí. Es código abierto bajo licencia MIT: puedes usarlo, modificarlo y redistribuirlo, también en los servidores de tu liga.</p></div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q3">¿Es una herramienta oficial de Kunos?</h3></summary>
+            <div class="faq-a"><p data-i18n="faq.a3">No. Es una herramienta independiente creada por la comunidad. No está afiliada, respaldada ni patrocinada por Kunos Simulazioni ni por Digital Bros. Assetto Corsa Competizione es una marca registrada de sus respectivos propietarios.</p></div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q4">¿Por qué pide permisos de administrador?</h3></summary>
+            <div class="faq-a"><p data-i18n="faq.a4">Steam instala el servidor dedicado dentro de Program Files, donde Windows solo permite escribir con permisos elevados. El panel los necesita para guardar los archivos de la carpeta cfg y para iniciar y detener accServer.exe.</p></div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q5">¿Funciona en LAN?</h3></summary>
+            <div class="faq-a"><p data-i18n-html="faq.a5">Sí. Por defecto el panel solo acepta conexiones desde el propio PC. Ejecútalo con <code>--lan</code> para abrirlo desde otro equipo de tu red; el acceso sigue protegido por token. La conexión es HTTP sin cifrar, así que úsalo solo en redes de confianza. Con <code>--new-token</code> generas un token nuevo.</p></div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3 class="faq-q" data-i18n="faq.q6">¿Dónde reporto errores o propongo mejoras?</h3></summary>
+            <div class="faq-a"><p data-i18n-html="faq.a6">En los <a href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/issues" target="_blank" rel="noopener noreferrer">Issues del repositorio en GitHub</a>. Indica la versión del panel y, si puedes, las líneas relevantes de la consola.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CTA FINAL -->
+    <section class="section cta-final" id="descargar" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="start-lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <h2 id="cta-title" data-i18n="cta.title">Tu próximo evento, sin pelearte con JSON</h2>
+          <p class="section-lead" data-i18n="cta.text">Descarga la v1.1, colócala en la carpeta server y prepara la parrilla desde el navegador.</p>
+          <div class="cta-row cta-row-center">
+            <a class="btn btn-primary" href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases/download/v1.1/ACC_Server_AdminPanel_v1.1.zip">
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="hero.download">Descargar v1.1</span>
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span data-i18n="hero.repo">Ver Repositorio</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="kerb kerb-thin" aria-hidden="true"></div>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="brand-name">ACC <strong>AdminPanel</strong> <span class="footer-version">v1.1</span></p>
+        <p data-i18n="footer.tagline">Interfaz gráfica para configurar y administrar servidores dedicados de Assetto Corsa Competizione.</p>
+        <p data-i18n-html="footer.license">Código abierto bajo <a href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">licencia MIT</a>.</p>
+      </div>
+      <nav class="footer-nav" data-i18n-attr="aria-label:footer.navLabel" aria-label="Enlaces del proyecto">
+        <ul>
+          <li><a href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo">Repositorio</a></li>
+          <li><a href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/releases" target="_blank" rel="noopener noreferrer" data-i18n="footer.releases">Versiones</a></li>
+          <li><a href="https://github.com/PytricioPUCV/ACC-Dedicated-Server-AdminPanel/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer.issues">Reportar un problema</a></li>
+          <li><a href="#top" class="to-top"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg><span data-i18n="footer.top">Volver arriba</span></a></li>
+        </ul>
+      </nav>
+      <p class="disclaimer" data-i18n="footer.disclaimer">Assetto Corsa Competizione es una marca registrada de Kunos Simulazioni S.r.l. y Digital Bros S.p.A. Este proyecto es independiente y no está afiliado, respaldado ni patrocinado por ellas.</p>
+    </div>
+  </footer>
+</body>
+</html>
